@@ -204,4 +204,3 @@ refresh().catch(error => {
   document.querySelector('#loading').hidden = true;
   showNotice(`Cannot load the local demo. Start the Python backend, then reload this page. ${error.message}`, true);
 });
-

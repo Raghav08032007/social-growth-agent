@@ -52,4 +52,4 @@ Optional browser integration requires playwright-core available to Node and an i
 
 Pilot **6.4/10**, full vision **4.6/10**, current production readiness **1/10**, all subjective. Start with owner interviews/capability verification, then production P0 and a single publishing/revenue slice. Do not market the demo as a finished social automation service.
 
-GitHub publication state is maintained in docs/github.md. No hosted URL should be inferred from a local folder name.
+Published to the public repository [Raghav08032007/social-growth-agent](https://github.com/Raghav08032007/social-growth-agent). GitHub publication details are maintained in docs/github.md. The public source excludes private input, raw third-party captures and local databases.

@@ -2,6 +2,8 @@
 
 An India-focused social-to-revenue SaaS proposal, feature catalogue, competitor investigation, and runnable local reference implementation.
 
+Public repository: [Raghav08032007/social-growth-agent](https://github.com/Raghav08032007/social-growth-agent).
+
 **Delivery status:** planning package + local demo. This is not a production SaaS or a complete replica of Whop, Buffer, Hootsuite, Sprout Social, or Agorapulse. All 257 catalogue features remain planned. The demo implements a subset of their underlying workflow using simulated publishing and manually recorded sales.
 
 ## Run the demo

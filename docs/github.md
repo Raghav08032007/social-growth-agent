@@ -1,6 +1,6 @@
 # GitHub publication
 
-Requested visibility: **public**. Intended name: `social-growth-agent`. Account owner was not supplied and no connected GitHub capability was confirmed during preparation. Do not invent a hosted repository URL.
+Published public repository: [Raghav08032007/social-growth-agent](https://github.com/Raghav08032007/social-growth-agent). Created and pushed using the existing Git Credential Manager account after the user selected public visibility. No tokens were written to source or printed. The suggested GitHub plugin was not needed for publication.
 
 The local source distribution excludes original attachments, raw third-party captures, SQLite databases, caches, secrets and Git history. Review `docs/delivery.md` before publishing: this is a planning package and demo, not a complete production implementation.
 
