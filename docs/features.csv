@@ -1,0 +1,258 @@
+feature_id,phase,phase_name,feature_name,status,source
+PL-3,0,Foundation,Mobile-friendly web app,planned,user-master-plan-2026-11-01
+PL-5,0,Foundation,Encrypted tokens and least-privilege permissions,planned,user-master-plan-2026-11-01
+PL-7,0,Foundation,Job queues and rate-limit handling,planned,user-master-plan-2026-11-01
+PL-8,0,Foundation,Admin panel and cost monitor,planned,user-master-plan-2026-11-01
+ON-1,1,Create and publish,"Sign-in with Google, phone OTP or email magic link",planned,user-master-plan-2026-11-01
+ON-2,1,Create and publish,Role selection,planned,user-master-plan-2026-11-01
+ON-3,1,Create and publish,Niche questionnaire (tap chips and voice answers),planned,user-master-plan-2026-11-01
+ON-4,1,Create and publish,Connect Instagram and Facebook,planned,user-master-plan-2026-11-01
+ON-7,1,Create and publish,Auto-built profile with confidence scores,planned,user-master-plan-2026-11-01
+ON-8,1,Create and publish,Profile confirmation and edit screen,planned,user-master-plan-2026-11-01
+ON-9,1,Create and publish,"""What we know about you"" page with export, disconnect and delete",planned,user-master-plan-2026-11-01
+NI-1,1,Create and publish,"Niche playbooks for three niches (salon, restaurant, boutique) as validated JSON files editable by staff",planned,user-master-plan-2026-11-01
+NI-2,1,Create and publish,Audience persona,planned,user-master-plan-2026-11-01
+NI-3,1,Create and publish,Voice and tone model with sliders,planned,user-master-plan-2026-11-01
+NI-4,1,Create and publish,"Regional language support (Tamil, Hindi, English, mixed)",planned,user-master-plan-2026-11-01
+NI-5,1,Create and publish,Festival and local-event calendar seeded with Indian festivals for 2026 and 2027 and user-added dates,planned,user-master-plan-2026-11-01
+NI-6,1,Create and publish,Goal-based planning,planned,user-master-plan-2026-11-01
+CS-1,1,Create and publish,"Caption, hook and script generator (three options)",planned,user-master-plan-2026-11-01
+CS-2,1,Create and publish,Post score with fix-it button,planned,user-master-plan-2026-11-01
+CS-3,1,Create and publish,Niche templates,planned,user-master-plan-2026-11-01
+CS-4,1,Create and publish,Brand kit with automatic color and font extraction,planned,user-master-plan-2026-11-01
+CS-5,1,Create and publish,Photo-first and voice-first creation,planned,user-master-plan-2026-11-01
+PB-1,1,Create and publish,Master post,planned,user-master-plan-2026-11-01
+PB-2,1,Create and publish,Platform adapters,planned,user-master-plan-2026-11-01
+PB-3,1,Create and publish,Live preview per platform,planned,user-master-plan-2026-11-01
+PB-4,1,Create and publish,Calendar view with drag to reschedule,planned,user-master-plan-2026-11-01
+PB-5,1,Create and publish,Best-time scheduling,planned,user-master-plan-2026-11-01
+PB-6,1,Create and publish,Per-platform editing and toggles,planned,user-master-plan-2026-11-01
+PB-7,1,Create and publish,"Retry queue, failure alerts and publish status",planned,user-master-plan-2026-11-01
+AG-1,1,Create and publish,Writer agent,planned,user-master-plan-2026-11-01
+AG-2,1,Create and publish,Adapter agent,planned,user-master-plan-2026-11-01
+AG-3,1,Create and publish,Three approval modes (new users start in assisted),planned,user-master-plan-2026-11-01
+AG-4,1,Create and publish,Audit log with undo,planned,user-master-plan-2026-11-01
+AG-5,1,Create and publish,Credits meter,planned,user-master-plan-2026-11-01
+NV-3,1,Create and publish,"Agent Trust Center (dry-run preview, risk score, per-agent permissions, kill switch, ""why I did this"")",planned,user-master-plan-2026-11-01
+NV-4,1,Create and publish,Privacy dashboard,planned,user-master-plan-2026-11-01
+PR-9,1,Create and publish,Demo workspace with sample data and a no-API mode (manual-publish reminders and screenshot analytics upload),planned,user-master-plan-2026-11-01
+PR-14,1,Create and publish,First-win wizard that ends with a ready-to-approve post in about five minutes,planned,user-master-plan-2026-11-01
+ON-5,2,Leads and inbox,Connect WhatsApp Business through a provider adapter,planned,user-master-plan-2026-11-01
+IN-1,2,Leads and inbox,Unified inbox,planned,user-master-plan-2026-11-01
+IN-2,2,Leads and inbox,Comment-to-DM funnels with templates and a test button,planned,user-master-plan-2026-11-01
+IN-3,2,Leads and inbox,Lead capture and mini-CRM with a stage board,planned,user-master-plan-2026-11-01
+IN-4,2,Leads and inbox,"WhatsApp leads, offers and order updates",planned,user-master-plan-2026-11-01
+IN-5,2,Leads and inbox,Daily leads-to-follow-up list,planned,user-master-plan-2026-11-01
+PX-11,2,Leads and inbox,Saved replies,planned,user-master-plan-2026-11-01
+PX-15,2,Leads and inbox,Story reply and story mention automation,planned,user-master-plan-2026-11-01
+PX-23,2,Leads and inbox,Hinglish and code-mixed keyword detection,planned,user-master-plan-2026-11-01
+PR-1,2,Leads and inbox,DM safety guard,planned,user-master-plan-2026-11-01
+PR-2,2,Leads and inbox,Automation health monitor,planned,user-master-plan-2026-11-01
+PR-3,2,Leads and inbox,Business-scope guard,planned,user-master-plan-2026-11-01
+PR-4,2,Leads and inbox,Consent register,planned,user-master-plan-2026-11-01
+ON-6,3,Money loop,Connect YouTube (read analytics and upload Shorts),planned,user-master-plan-2026-11-01
+AT-1,3,Money loop,"Tracked links, UTM and coupon codes",planned,user-master-plan-2026-11-01
+AT-2,3,Money loop,WhatsApp click-to-chat attribution,planned,user-master-plan-2026-11-01
+AT-3,3,Money loop,Post-to-lead-to-sale dashboard,planned,user-master-plan-2026-11-01
+AT-4,3,Money loop,Quick sale logging,planned,user-master-plan-2026-11-01
+AT-5,3,Money loop,Cross-platform performance dashboard,planned,user-master-plan-2026-11-01
+AT-6,3,Money loop,Audience analytics,planned,user-master-plan-2026-11-01
+GI-1,3,Money loop,"Weekly ""what to do next"" report",planned,user-master-plan-2026-11-01
+GI-2,3,Money loop,Social SEO,planned,user-master-plan-2026-11-01
+GI-3,3,Money loop,Hashtag and keyword suggestions,planned,user-master-plan-2026-11-01
+GI-4,3,Money loop,Trend radar,planned,user-master-plan-2026-11-01
+GI-5,3,Money loop,Own-account peak-content analysis,planned,user-master-plan-2026-11-01
+MO-1,3,Money loop,Link-in-bio page with UPI checkout,planned,user-master-plan-2026-11-01
+MO-2,3,Money loop,Affiliate and coupon tracking,planned,user-master-plan-2026-11-01
+MO-3,3,Money loop,Auto media kit,planned,user-master-plan-2026-11-01
+PL-2,3,Money loop,Control from WhatsApp,planned,user-master-plan-2026-11-01
+PL-21,3,Money loop,Daily 30-second WhatsApp routine,planned,user-master-plan-2026-11-01
+PR-10,3,Money loop,Honest analytics labels,planned,user-master-plan-2026-11-01
+NV-1,3,Money loop,Post-to-cash ledger,planned,user-master-plan-2026-11-01
+NV-2,3,Money loop,WhatsApp voice-note studio,planned,user-master-plan-2026-11-01
+NV-5,3,Money loop,Shareable monthly results card,planned,user-master-plan-2026-11-01
+PL-1,4,Launch ready,"Plans, subscriptions and credits in INR",planned,user-master-plan-2026-11-01
+PL-4,4,Launch ready,Notification center,planned,user-master-plan-2026-11-01
+PL-6,4,Launch ready,Data export and delete on request,planned,user-master-plan-2026-11-01
+PL-9,4,Launch ready,Simple and advanced view toggle,planned,user-master-plan-2026-11-01
+PL-10,4,Launch ready,Guided setup checklist and empty-state help,planned,user-master-plan-2026-11-01
+PL-16,4,Launch ready,AI-content labeling,planned,user-master-plan-2026-11-01
+PR-6,4,Launch ready,INR billing that survives card failures,planned,user-master-plan-2026-11-01
+PR-7,4,Launch ready,Workspace-based pricing,planned,user-master-plan-2026-11-01
+PR-15,4,Launch ready,Free tier,planned,user-master-plan-2026-11-01
+PR-17,4,Launch ready,Spending caps,planned,user-master-plan-2026-11-01
+ON-10,5,Engagement,"Connect LinkedIn, X, Pinterest, TikTok and Threads (one connector at a time, each behind the publishing interface)",planned,user-master-plan-2026-11-01
+ON-11,5,Engagement,Connect Google Business Profile,planned,user-master-plan-2026-11-01
+ON-12,5,Engagement,Analytics upload by screenshot or CSV,planned,user-master-plan-2026-11-01
+NI-7,5,Engagement,More niche playbooks and sub-niches,planned,user-master-plan-2026-11-01
+NI-8,5,Engagement,Editable playbooks with reset,planned,user-master-plan-2026-11-01
+PB-8,5,Engagement,Bulk upload and queue,planned,user-master-plan-2026-11-01
+PB-9,5,Engagement,Manual-publish reminders,planned,user-master-plan-2026-11-01
+PB-10,5,Engagement,Duplicate-content and fatigue detection,planned,user-master-plan-2026-11-01
+IN-6,5,Engagement,Auto-FAQ,planned,user-master-plan-2026-11-01
+IN-7,5,Engagement,"Lead qualification with hot, warm and cold scores",planned,user-master-plan-2026-11-01
+IN-8,5,Engagement,Follow-up reminders and drafted follow-ups,planned,user-master-plan-2026-11-01
+IN-9,5,Engagement,Human handoff,planned,user-master-plan-2026-11-01
+IN-10,5,Engagement,Giveaway and contest manager,planned,user-master-plan-2026-11-01
+IN-11,5,Engagement,Review and reputation monitor,planned,user-master-plan-2026-11-01
+IN-12,5,Engagement,Google Business Profile posts and review replies,planned,user-master-plan-2026-11-01
+IN-13,5,Engagement,Review-request automation,planned,user-master-plan-2026-11-01
+PX-10,5,Engagement,"Inbox assignment, notes and tags",planned,user-master-plan-2026-11-01
+PX-13,5,Engagement,Comment moderation,planned,user-master-plan-2026-11-01
+PX-14,5,Engagement,Sentiment analysis,planned,user-master-plan-2026-11-01
+PX-16,5,Engagement,Follow-gate,planned,user-master-plan-2026-11-01
+PX-18,5,Engagement,Ad-comment automation,planned,user-master-plan-2026-11-01
+PX-19,5,Engagement,Visual flow builder,planned,user-master-plan-2026-11-01
+PX-20,5,Engagement,Facebook Page and Messenger automation,planned,user-master-plan-2026-11-01
+PX-21,5,Engagement,WhatsApp broadcast campaigns,planned,user-master-plan-2026-11-01
+PX-22,5,Engagement,Shopify catalog-aware answers,planned,user-master-plan-2026-11-01
+PL-12,5,Engagement,In-app help chat,planned,user-master-plan-2026-11-01
+PL-14,5,Engagement,Ad-disclosure checker,planned,user-master-plan-2026-11-01
+PL-15,5,Engagement,Claim warnings,planned,user-master-plan-2026-11-01
+PL-18,5,Engagement,Referral program,planned,user-master-plan-2026-11-01
+PR-5,5,Engagement,WhatsApp template helper,planned,user-master-plan-2026-11-01
+PR-8,5,Engagement,Switch assistant,planned,user-master-plan-2026-11-01
+PR-16,5,Engagement,Platform status banner,planned,user-master-plan-2026-11-01
+NV-9,5,Engagement,Buyer-intent radar,planned,user-master-plan-2026-11-01
+NV-12,5,Engagement,Post-purchase UGC engine,planned,user-master-plan-2026-11-01
+NV-15,5,Engagement,Reputation guard,planned,user-master-plan-2026-11-01
+NV-20,5,Engagement,Review loop,planned,user-master-plan-2026-11-01
+NI-9,6,Growth tools,Learning loop,planned,user-master-plan-2026-11-01
+CS-6,6,Growth tools,AI image generation,planned,user-master-plan-2026-11-01
+CS-7,6,Growth tools,Auto-subtitles,planned,user-master-plan-2026-11-01
+CS-8,6,Growth tools,Thumbnail and cover generator,planned,user-master-plan-2026-11-01
+CS-9,6,Growth tools,Auto-resize and smart reframe,planned,user-master-plan-2026-11-01
+CS-10,6,Growth tools,Long-video to short-clips finder,planned,user-master-plan-2026-11-01
+CS-11,6,Growth tools,Content repurposing,planned,user-master-plan-2026-11-01
+CS-12,6,Growth tools,Idea bank and content-gap finder,planned,user-master-plan-2026-11-01
+CS-13,6,Growth tools,Evergreen recycler,planned,user-master-plan-2026-11-01
+PX-1,6,Growth tools,Visual feed and grid planner,planned,user-master-plan-2026-11-01
+PX-2,6,Growth tools,Content categories and recurring queues,planned,user-master-plan-2026-11-01
+PX-3,6,Growth tools,Content discovery and curation,planned,user-master-plan-2026-11-01
+PX-4,6,Growth tools,Hashtag groups and first-comment scheduling,planned,user-master-plan-2026-11-01
+PX-5,6,Growth tools,"Stories, carousels and thread publishing",planned,user-master-plan-2026-11-01
+PX-7,6,Growth tools,In-app design editor with Canva import,planned,user-master-plan-2026-11-01
+AT-7,6,Growth tools,Shopify and WooCommerce order attribution,planned,user-master-plan-2026-11-01
+AT-8,6,Growth tools,Niche metrics,planned,user-master-plan-2026-11-01
+AT-9,6,Growth tools,Content-mix and format analysis,planned,user-master-plan-2026-11-01
+PX-9,6,Growth tools,Chat assistant over the user's own analytics,planned,user-master-plan-2026-11-01
+PX-25,6,Growth tools,Stories and hashtag analytics,planned,user-master-plan-2026-11-01
+PX-26,6,Growth tools,Scheduled report emails and report builder,planned,user-master-plan-2026-11-01
+PX-27,6,Growth tools,Google Analytics integration,planned,user-master-plan-2026-11-01
+PL-22,6,Growth tools,Before-and-after goal tracker,planned,user-master-plan-2026-11-01
+GI-6,6,Growth tools,Competitor and peer tracker,planned,user-master-plan-2026-11-01
+GI-7,6,Growth tools,Competitor peak-content view,planned,user-master-plan-2026-11-01
+GI-8,6,Growth tools,AI tagging of top posts,planned,user-master-plan-2026-11-01
+GI-9,6,Growth tools,"""Create my version""",planned,user-master-plan-2026-11-01
+GI-10,6,Growth tools,Competitor growth and posting-frequency trends,planned,user-master-plan-2026-11-01
+GI-11,6,Growth tools,Reach-drop diagnosis,planned,user-master-plan-2026-11-01
+GI-12,6,Growth tools,A/B testing,planned,user-master-plan-2026-11-01
+PR-11,6,Growth tools,Search-phrase checklist,planned,user-master-plan-2026-11-01
+PL-17,6,Growth tools,Music and copyright warnings,planned,user-master-plan-2026-11-01
+NV-7,6,Growth tools,Local social SEO with Google Business Profile sync,planned,user-master-plan-2026-11-01
+NV-8,6,Growth tools,Reach-drop doctor and reel autopsy,planned,user-master-plan-2026-11-01
+NV-13,6,Growth tools,Context triggers,planned,user-master-plan-2026-11-01
+NV-18,6,Growth tools,Platform change monitor,planned,user-master-plan-2026-11-01
+NV-19,6,Growth tools,Authenticity guard,planned,user-master-plan-2026-11-01
+AG-6,7,Agents and creator tools,Reviewer agent,planned,user-master-plan-2026-11-01
+AG-7,7,Agents and creator tools,Community agent,planned,user-master-plan-2026-11-01
+AG-8,7,Agents and creator tools,Analyst agent,planned,user-master-plan-2026-11-01
+AG-9,7,Agents and creator tools,Strategist agent,planned,user-master-plan-2026-11-01
+AG-10,7,Agents and creator tools,Designer agent,planned,user-master-plan-2026-11-01
+AG-11,7,Agents and creator tools,Scheduler agent,planned,user-master-plan-2026-11-01
+MO-4,7,Agents and creator tools,Rate-card calculator,planned,user-master-plan-2026-11-01
+MO-5,7,Agents and creator tools,Deal pipeline tracker,planned,user-master-plan-2026-11-01
+MO-6,7,Agents and creator tools,"Digital products, bookings and consultations",planned,user-master-plan-2026-11-01
+MO-7,7,Agents and creator tools,Tip jar and payment links,planned,user-master-plan-2026-11-01
+MO-8,7,Agents and creator tools,Email and WhatsApp list builder with consent records,planned,user-master-plan-2026-11-01
+MO-9,7,Agents and creator tools,Offer builder,planned,user-master-plan-2026-11-01
+PL-13,7,Agents and creator tools,Invoicing with GST and payout tracking,planned,user-master-plan-2026-11-01
+PR-12,7,Agents and creator tools,Low-data mode,planned,user-master-plan-2026-11-01
+PR-13,7,Agents and creator tools,"Voice-first, icon-based interface",planned,user-master-plan-2026-11-01
+NV-6,7,Agents and creator tools,Offer engine,planned,user-master-plan-2026-11-01
+NV-11,7,Agents and creator tools,Verified results passport,planned,user-master-plan-2026-11-01
+NV-14,7,Agents and creator tools,Consistency coach,planned,user-master-plan-2026-11-01
+NV-16,7,Agents and creator tools,Transparent credits and outcome pricing,planned,user-master-plan-2026-11-01
+NV-17,7,Agents and creator tools,Shoot coach and auto-editor,planned,user-master-plan-2026-11-01
+TW-1,8,Teams and agencies,Review and approval links,planned,user-master-plan-2026-11-01
+TW-2,8,Teams and agencies,Version history,planned,user-master-plan-2026-11-01
+TW-3,8,Teams and agencies,Brief builder,planned,user-master-plan-2026-11-01
+TW-4,8,Teams and agencies,Asset library per client,planned,user-master-plan-2026-11-01
+TW-5,8,Teams and agencies,Post checklist with owners and due dates,planned,user-master-plan-2026-11-01
+TW-6,8,Teams and agencies,Team seats with roles,planned,user-master-plan-2026-11-01
+TW-7,8,Teams and agencies,Multi-client workspaces,planned,user-master-plan-2026-11-01
+TW-8,8,Teams and agencies,Client portal,planned,user-master-plan-2026-11-01
+TW-9,8,Teams and agencies,Editing helpers,planned,user-master-plan-2026-11-01
+TW-10,8,Teams and agencies,Maker assistant,planned,user-master-plan-2026-11-01
+TW-11,8,Teams and agencies,Performance feedback to the maker,planned,user-master-plan-2026-11-01
+TW-12,8,Teams and agencies,Project tracker,planned,user-master-plan-2026-11-01
+TW-13,8,Teams and agencies,Revision limits with add-on quotes,planned,user-master-plan-2026-11-01
+TW-14,8,Teams and agencies,"GST invoices, UPI links and payment reminders",planned,user-master-plan-2026-11-01
+TW-15,8,Teams and agencies,Rights and music-license checks,planned,user-master-plan-2026-11-01
+TW-16,8,Teams and agencies,Public portfolio with real results,planned,user-master-plan-2026-11-01
+TW-17,8,Teams and agencies,White-label,planned,user-master-plan-2026-11-01
+TW-18,8,Teams and agencies,Talent-manager roster dashboard,planned,user-master-plan-2026-11-01
+AT-10,8,Teams and agencies,Client-ready branded reports,planned,user-master-plan-2026-11-01
+PL-11,8,Teams and agencies,Public API and MCP server,planned,user-master-plan-2026-11-01
+PX-36,8,Teams and agencies,"Zapier, Make and Google Sheets connectors",planned,user-master-plan-2026-11-01
+PX-37,8,Teams and agencies,Outbound webhooks and Slack or Teams notifications,planned,user-master-plan-2026-11-01
+NV-10,8,Teams and agencies,Creative workflow linked to results,planned,user-master-plan-2026-11-01
+MK-1,9,Marketplace,Creator profiles with verified-metrics badge,planned,user-master-plan-2026-11-01
+MK-2,9,Marketplace,Campaign posting,planned,user-master-plan-2026-11-01
+MK-3,9,Marketplace,Creator discovery with filters,planned,user-master-plan-2026-11-01
+MK-4,9,Marketplace,AI matching,planned,user-master-plan-2026-11-01
+MK-5,9,Marketplace,In-app messaging and deal rooms,planned,user-master-plan-2026-11-01
+MK-6,9,Marketplace,"Contracts, milestone payouts and escrow through a payment provider",planned,user-master-plan-2026-11-01
+MK-7,9,Marketplace,Pre-priced UGC and content packages,planned,user-master-plan-2026-11-01
+MK-8,9,Marketplace,Performance-based payouts,planned,user-master-plan-2026-11-01
+MK-9,9,Marketplace,Ratings and reviews,planned,user-master-plan-2026-11-01
+TW-19,9,Marketplace,Marketplace listing for makers,planned,user-master-plan-2026-11-01
+NV-21,9,Marketplace,Local barter and micro-creator deals,planned,user-master-plan-2026-11-01
+BC-1,9,Marketplace,Campaign brief builder,planned,user-master-plan-2026-11-01
+BC-2,9,Marketplace,Draft review and approval,planned,user-master-plan-2026-11-01
+BC-3,9,Marketplace,Fake-follower and engagement-quality scoring,planned,user-master-plan-2026-11-01
+BC-4,9,Marketplace,Brand-safety screening,planned,user-master-plan-2026-11-01
+BC-5,9,Marketplace,Brand-guideline enforcement,planned,user-master-plan-2026-11-01
+BC-6,9,Marketplace,Content rights and licensing terms,planned,user-master-plan-2026-11-01
+BC-7,9,Marketplace,Long-term ambassador programs,planned,user-master-plan-2026-11-01
+BC-8,9,Marketplace,Multi-location and franchise reporting,planned,user-master-plan-2026-11-01
+AG-13,9,Marketplace,Deal-finder agent,planned,user-master-plan-2026-11-01
+AG-14,9,Marketplace,Campaign agent,planned,user-master-plan-2026-11-01
+AT-11,9,Marketplace,ROI views for brands,planned,user-master-plan-2026-11-01
+PX-29,9,Marketplace,B2B pipeline attribution,planned,user-master-plan-2026-11-01
+PX-30,9,Marketplace,Creator outreach automation,planned,user-master-plan-2026-11-01
+PX-31,9,Marketplace,Product seeding and gifting tracker,planned,user-master-plan-2026-11-01
+PX-32,9,Marketplace,Brand-side creator CRM,planned,user-master-plan-2026-11-01
+PX-33,9,Marketplace,Browser extension to save creators,planned,user-master-plan-2026-11-01
+PX-34,9,Marketplace,Creator rate benchmarking,planned,user-master-plan-2026-11-01
+PX-35,9,Marketplace,Influencer campaign reporting,planned,user-master-plan-2026-11-01
+AG-12,10,Ecosystem,Goal-driven autopilot,planned,user-master-plan-2026-11-01
+NV-26,10,Ecosystem,Mission control,planned,user-master-plan-2026-11-01
+AG-15,10,Ecosystem,Ad-boost agent,planned,user-master-plan-2026-11-01
+IN-14,10,Ecosystem,Crisis alerts,planned,user-master-plan-2026-11-01
+IN-15,10,Ecosystem,AI voice or phone follow-up,planned,user-master-plan-2026-11-01
+PB-11,10,Ecosystem,Audience-segment tracks,planned,user-master-plan-2026-11-01
+PX-12,10,Ecosystem,Response-time tracking and SLA alerts,planned,user-master-plan-2026-11-01
+PX-17,10,Ecosystem,Fan mode,planned,user-master-plan-2026-11-01
+NI-10,10,Ecosystem,Anonymized niche benchmarks,planned,user-master-plan-2026-11-01
+GI-13,10,Ecosystem,Social listening,planned,user-master-plan-2026-11-01
+GI-14,10,Ecosystem,Collab and remix suggestions,planned,user-master-plan-2026-11-01
+GI-15,10,Ecosystem,Niche-and-city benchmark comparison,planned,user-master-plan-2026-11-01
+NV-25,10,Ecosystem,Competitor playbook adapter,planned,user-master-plan-2026-11-01
+CS-14,10,Ecosystem,UGC collection with rights tracking,planned,user-master-plan-2026-11-01
+PX-6,10,Ecosystem,"More networks (Bluesky, Reddit, Telegram, Snapchat, Twitch, Mastodon)",planned,user-master-plan-2026-11-01
+PX-8,10,Ecosystem,AI short-video generator,planned,user-master-plan-2026-11-01
+NV-24,10,Ecosystem,Regional dubbing and caption translation,planned,user-master-plan-2026-11-01
+PL-19,10,Ecosystem,Growth streaks and milestones,planned,user-master-plan-2026-11-01
+PL-20,10,Ecosystem,Creator academy,planned,user-master-plan-2026-11-01
+MO-10,10,Ecosystem,"Courses, memberships and paid communities",planned,user-master-plan-2026-11-01
+PX-28,10,Ecosystem,Paid-ads reporting,planned,user-master-plan-2026-11-01
+PX-39,10,Ecosystem,International payments,planned,user-master-plan-2026-11-01
+NV-22,10,Ecosystem,Income stabilizer,planned,user-master-plan-2026-11-01
+NV-23,10,Ecosystem,Fake-engagement shield,planned,user-master-plan-2026-11-01
+TW-20,10,Ecosystem,Template and playbook marketplace,planned,user-master-plan-2026-11-01
+NV-27,10,Ecosystem,Staff-as-creators,planned,user-master-plan-2026-11-01
+NV-28,10,Ecosystem,Maker bonus share,planned,user-master-plan-2026-11-01
+NV-29,10,Ecosystem,Open agent ecosystem and playbook store,planned,user-master-plan-2026-11-01
+PX-24,10,Ecosystem,Native iOS and Android apps,planned,user-master-plan-2026-11-01
+PX-38,10,Ecosystem,SSO and audit exports,planned,user-master-plan-2026-11-01

@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+*.sqlite*
+*.db
+.env
+.env.*
+!.env.example
+.venv/
+node_modules/
+dist/
+artifacts/
+# Raw competitor captures stay local; publish the derived evidence index.
+docs/evidence/*.json
+# Preserve the user's attachment locally, outside the public distribution.
+docs/source/
