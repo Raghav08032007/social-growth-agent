@@ -107,3 +107,28 @@ class Job(TenantRecord, Base):
     lease_until: Mapped[int] = mapped_column(BigInteger, default=0)
     lease_token: Mapped[str | None] = mapped_column(String(32))
     last_error: Mapped[str | None] = mapped_column(Text)
+
+
+class ApiError(Base):
+    __tablename__ = "api_errors"
+    id: Mapped[str] = mapped_column(String(32), primary_key=True, default=new_id)
+    request_id: Mapped[str] = mapped_column(String(32), index=True)
+    route: Mapped[str] = mapped_column(String(160))
+    method: Mapped[str] = mapped_column(String(10))
+    status: Mapped[int] = mapped_column(Integer)
+    code: Mapped[str] = mapped_column(String(60))
+    created_at: Mapped[int] = mapped_column(BigInteger, default=timestamp, index=True)
+
+
+class CostAlert(TenantRecord, Base):
+    __tablename__ = "cost_alerts"
+    __table_args__ = (UniqueConstraint("workspace_id", "period"),)
+    period: Mapped[str] = mapped_column(String(7))
+    cost_paise: Mapped[int] = mapped_column(BigInteger)
+    status: Mapped[str] = mapped_column(String(20), default="pending", index=True)
+    attempts: Mapped[int] = mapped_column(Integer, default=0)
+    available_at: Mapped[int] = mapped_column(BigInteger, default=timestamp)
+    lease_until: Mapped[int] = mapped_column(BigInteger, default=0)
+    lease_token: Mapped[str | None] = mapped_column(String(32))
+    delivered_at: Mapped[int | None] = mapped_column(BigInteger)
+    last_error: Mapped[str | None] = mapped_column(String(50))

@@ -3,11 +3,13 @@ const fs = require('node:fs');
 const path = require('node:path');
 const {execFileSync} = require('node:child_process');
 const {chromium} = require(process.env.PLAYWRIGHT_MODULE || path.resolve('frontend/node_modules/playwright'));
+const AxeBuilder=require(path.resolve('frontend/node_modules/@axe-core/playwright')).default;
 
 (async()=>{
  const browser=await chromium.launch({executablePath:process.env.CHROME_PATH,headless:true});
  try {
-  const page=await browser.newPage({viewport:{width:1440,height:1000}});
+  const context=await browser.newContext({viewport:{width:1440,height:1000}});
+  const page=await context.newPage();
   const errors=[];page.on('pageerror',e=>errors.push(e.message));
   let apiCalls=0,unavailable='',delayRequests=false;
   fs.mkdirSync('artifacts/redesign',{recursive:true});
@@ -32,6 +34,9 @@ const {chromium} = require(process.env.PLAYWRIGHT_MODULE || path.resolve('fronte
    return route.fulfill({contentType:type,body:fs.readFileSync(file)});
   });
   await page.goto('http://foundation.test/');
+  const accessibility=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();
+  fs.writeFileSync('artifacts/redesign/accessibility.json',JSON.stringify(accessibility,null,2));
+  assert.deepEqual(accessibility.violations.map(rule=>({id:rule.id,targets:rule.nodes.map(node=>node.target)})),[],'Accessibility violations on workspace access screen');
   await page.screenshot({path:'artifacts/redesign/welcome-1440.png',fullPage:true});
   await page.locator('.mascot').focus();
   await page.keyboard.press('Enter');
@@ -60,10 +65,19 @@ const {chromium} = require(process.env.PLAYWRIGHT_MODULE || path.resolve('fronte
   await page.getByRole('button',{name:'Operations',exact:true}).click();
   await page.getByText('Cost threshold exceeded',{exact:true}).waitFor();
   assert.equal(await page.getByText('₹500.00',{exact:true}).count(),1);
+  await page.getByText('Operational records',{exact:true}).waitFor();
+  await page.getByRole('button',{name:'Users',exact:true}).click();
+  await page.locator('.records-scroll tbody tr').first().waitFor();
+  assert.equal(await page.locator('.records-scroll tbody tr').count(),25);
+  await page.getByRole('button',{name:'Load more records',exact:true}).click();
+  await page.waitForFunction(()=>document.querySelectorAll('.records-scroll tbody tr').length===28);
+  assert.equal(await page.getByRole('button',{name:'Load more records',exact:true}).count(),0);
   await page.getByRole('button',{name:'Home',exact:true}).click();
   await page.locator('.job-row small').filter({hasText:'succeeded'}).first().waitFor();
   await page.screenshot({path:'artifacts/foundation-desktop.png',fullPage:true});
   await page.screenshot({path:'artifacts/redesign/dashboard-1440.png',fullPage:true});
+  const dashboardAccessibility=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();
+  assert.deepEqual(dashboardAccessibility.violations.map(rule=>({id:rule.id,targets:rule.nodes.map(node=>node.target)})),[],'Accessibility violations on dashboard');
   await page.getByRole('button',{name:'Needs attention',exact:true}).click();
   await page.getByText('Your story starts here.',{exact:true}).waitFor();
   await page.screenshot({path:'artifacts/redesign/empty-1440.png',fullPage:true});

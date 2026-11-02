@@ -81,4 +81,14 @@ def test_versioned_migration_upgrade_downgrade_roundtrip(tmp_path, monkeypatch):
     assert inspect(engine).get_table_names() == ["alembic_version"]
     command.upgrade(config, "head")
     command.check(config)
+    command.downgrade(config, "0002")
+    with transaction(engine) as db:
+        previous = Workspace(name="Previous release fixture")
+        db.add(previous)
+        db.flush()
+        previous_id = previous.id
+    command.upgrade(config, "head")
+    with transaction(engine) as db:
+        assert db.get(Workspace, previous_id).name == "Previous release fixture"
+    command.check(config)
     engine.dispose()

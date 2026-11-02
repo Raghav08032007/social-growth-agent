@@ -34,6 +34,7 @@ with tempfile.TemporaryDirectory() as directory:
         db.add(member);db.flush()
         db.add(Membership(user_id=member.id,workspace_id=workspace.id,role='viewer'))
         os.environ['FOUNDATION_MEMBER_SESSION']=issue_session(db,member.id)
+        db.add_all([User(name=f'Pagination fixture {index}') for index in range(26)])
         record_cost(db,workspace.id,'browser-fixture',50000)
         db.add(Job(workspace_id=workspace.id,idempotency_key='browser-fixture',
                    kind='diagnostic.retry',payload={'fail_until':0},status='succeeded'))

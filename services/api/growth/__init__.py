@@ -1,4 +1,6 @@
+import json
 import uuid
+from pathlib import Path
 
 from flask import Flask, g, jsonify, request
 from redis.exceptions import RedisError
@@ -12,6 +14,8 @@ from .db import make_engine, transaction
 from .jobs import enqueue
 from .models import (
     AgentAction,
+    ApiError,
+    CostAlert,
     CreditEntry,
     FeatureFlag,
     Job,
@@ -20,13 +24,15 @@ from .models import (
     VaultToken,
     Workspace,
 )
+from .operations import page as admin_page
+from .operations import record_api_error
 from .security import Problem, authenticate, membership
 from .vault import EnvironmentKeyProvider, Vault
 
 
 def create_app(settings=None):
     settings = settings or Settings.from_env()
-    app = Flask(__name__)
+    app = Flask(__name__, static_folder=None)
     app.config.update(MAX_CONTENT_LENGTH=16384)
     engine = make_engine(settings.database_url)
     app.extensions["engine"] = engine
@@ -44,10 +50,24 @@ def create_app(settings=None):
         response.headers["X-Request-ID"] = g.request_id
         response.headers["Cache-Control"] = "no-store"
         response.headers["X-Content-Type-Options"] = "nosniff"
+        if response.status_code >= 500:
+            try:
+                record_api_error(
+                    engine,
+                    g.request_id,
+                    request.url_rule.rule if request.url_rule else "<unmatched>",
+                    request.method,
+                    response.status_code,
+                    getattr(g, "error_code", "http_error"),
+                )
+            except SQLAlchemyError:
+                # A database outage must not recurse through the HTTP error handler.
+                app.logger.error("Operational error persistence unavailable id=%s", g.request_id)
         return response
 
     @app.errorhandler(Problem)
     def problem(exc):
+        g.error_code = exc.code
         return jsonify(
             error={"code": exc.code, "message": exc.message, "request_id": g.request_id}
         ), exc.status
@@ -72,6 +92,14 @@ def create_app(settings=None):
     @app.get("/health/live")
     def live():
         return jsonify(status="alive")
+
+    @app.get("/openapi.json")
+    def openapi():
+        return jsonify(
+            json.loads(
+                (Path(__file__).resolve().parents[1] / "openapi.json").read_text(encoding="utf-8")
+            )
+        )
 
     @app.get("/health/ready")
     def ready():
@@ -198,7 +226,84 @@ def create_app(settings=None):
                     for row in failed
                 ],
                 users=[{"id": row.id, "name": row.name, "is_staff": row.is_staff} for row in users],
+                api_errors=[
+                    {
+                        "id": row.id,
+                        "request_id": row.request_id,
+                        "route": row.route,
+                        "status": row.status,
+                        "code": row.code,
+                    }
+                    for row in db.scalars(
+                        select(ApiError).order_by(ApiError.created_at.desc(), ApiError.id).limit(50)
+                    )
+                ],
+                cost_alerts=[
+                    {
+                        "id": row.id,
+                        "workspace_id": row.workspace_id,
+                        "period": row.period,
+                        "status": row.status,
+                        "attempts": row.attempts,
+                    }
+                    for row in db.scalars(
+                        select(CostAlert)
+                        .order_by(CostAlert.created_at.desc(), CostAlert.id)
+                        .limit(50)
+                    )
+                ],
             )
+
+    @app.get("/v1/admin/<collection>")
+    def admin_collection(collection):
+        with transaction(engine) as db:
+            user = authenticate(db, request.headers.get("Authorization", ""))
+            if not user.is_staff:
+                raise Problem("forbidden", "Staff access required", 403)
+            models = {
+                "workspaces": Workspace,
+                "users": User,
+                "failed-jobs": Job,
+                "api-errors": ApiError,
+                "cost-alerts": CostAlert,
+            }
+            model = models.get(collection)
+            if model is None:
+                raise Problem("not_found", "Collection not found", 404)
+            rows, cursor = admin_page(
+                db,
+                model,
+                request.args,
+                Job.status == "dead_letter" if collection == "failed-jobs" else None,
+            )
+            fields = {
+                "users": ["id", "name", "is_staff"],
+                "failed-jobs": ["id", "workspace_id", "last_error", "attempts"],
+                "api-errors": [
+                    "id",
+                    "request_id",
+                    "route",
+                    "method",
+                    "status",
+                    "code",
+                    "created_at",
+                ],
+                "cost-alerts": [
+                    "id",
+                    "workspace_id",
+                    "period",
+                    "cost_paise",
+                    "status",
+                    "attempts",
+                    "last_error",
+                ],
+            }
+            items = (
+                [summary(db, row) for row in rows]
+                if collection == "workspaces"
+                else [{key: getattr(row, key) for key in fields[collection]} for row in rows]
+            )
+            return jsonify(items=items, next_cursor=cursor)
 
     from .cli import register
 

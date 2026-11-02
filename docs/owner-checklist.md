@@ -12,7 +12,7 @@ An original local demo plus a separate Flask/React foundation. The foundation in
 
 | Stage | Remaining work |
 |---|---|
-| Finish P0 | provider adapter contracts/permission registry; managed keys; API-error monitoring and alerts; OpenAPI; storage/mail development services; restore/load checks; native-language and accessibility review |
+| Finish P0 | live provider permission/token lifecycle verification; managed deployment keys/storage validation; actual model integration and external alert setup; native-language and broader manual device/accessibility review |
 | P1 · 34 features | public signup/onboarding, confirmed business profile, multilingual AI content, official publishing connections, versioned approvals and publishing recovery |
 | P2 · 13 | eligible inbox/comment workflows, lead CRM, consent and opt-out, WhatsApp integration |
 | P3 · 21 | tracked attribution, verified payment events/refunds, reports, store and WhatsApp controls |

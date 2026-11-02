@@ -29,4 +29,8 @@ Run tests appropriate to modules, frontend typecheck/build, existing demo tests 
 
 ## Deferred
 
+## Completion pass
+
+Continue P0 with sanitized API-error records, cursor-paginated staff lists, a durable per-workspace/month cost-alert outbox and local SMTP delivery/retry. Add OpenAPI covering every exposed route, internal provider protocols with fail-closed defaults, capability gates and lifecycle contract tests, offline public-shell caching that never caches authenticated responses, storage/mail development dependencies and backup/restore/load diagnostics. Re-run migration, unit, browser and real-container gates. Local acceptance and human/provider launch prerequisites must be reported separately; do not promote whole-phase status while an original gate remains unverified.
+
 P1+ authentication UI flows, real OAuth/provider adapters/refresh, AI generation, publishing, inbox, commerce and billing. No customer messages/payments. This phase builds internal primitives and an operations shell, not live social integrations.

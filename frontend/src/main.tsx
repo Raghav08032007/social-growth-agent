@@ -6,6 +6,7 @@ import {languages, messages, type Language} from './i18n';
 import {experience, phaseNames, phaseCounts} from './experience';
 import {AnimationContext, Button, Dialog, Icon, Mascot} from './ui';
 import {motionTokens, shouldAnimate, springs} from './motion';
+import {OperationsRecords} from './operations';
 import './style.css';
 
 type Page='home'|'calendar'|'create'|'inbox'|'leads'|'insights'|'store'|'settings'|'operations'|'roadmap';
@@ -27,6 +28,7 @@ function App(){
  const [loading,setLoading]=useState(false),[error,setError]=useState(false),[refresh,setRefresh]=useState(0);
  const [preview,setPreview]=useState(false),[guide,setGuide]=useState(false),[query,setQuery]=useState('');
  const [missing,setMissing]=useState<string[]>([]),[jobFilter,setJobFilter]=useState('all');
+ const [online,setOnline]=useState(()=>navigator.onLine);
  const initialReduced=useReducedMotion()===true;
  const [reduced,setReduced]=useState(initialReduced);
  const feedback=shouldAnimate(reduced,paused,true);
@@ -34,6 +36,14 @@ function App(){
  const title=(name:Page)=>name==='roadmap'?x.roadmap:t[name];
  const allPages:Page[]=[...pages,'roadmap',...(identity?.user.is_staff?['operations' as Page]:[])];
  const navigate=(name:Page)=>{setPage(name);setQuery('');window.scrollTo({top:0,behavior:'instant'});};
+ useEffect(()=>{
+  const update=()=>setOnline(navigator.onLine);
+  window.addEventListener('online',update);window.addEventListener('offline',update);
+  if(import.meta.env.PROD&&'serviceWorker' in navigator){
+   navigator.serviceWorker.register('/sw.js').catch(()=>{/* Network-only mode remains usable. */});
+  }
+  return()=>{window.removeEventListener('online',update);window.removeEventListener('offline',update);};
+ },[]);
  useEffect(()=>{
   const preference=window.matchMedia('(prefers-reduced-motion: reduce)');
   const update=()=>setReduced(preference.matches);
@@ -126,13 +136,14 @@ function App(){
   </aside>
   <div className="app-main"><header className="topbar"><div className="breadcrumb">{t.workspace}<span>/</span><strong>{title(page)}</strong></div><div className="topbar-tools"><div className="search-wrap"><Icon name="search"/><input aria-label={x.search} placeholder={x.search} value={query} onChange={e=>setQuery(e.target.value)} onKeyDown={e=>{if(e.key==='Escape')setQuery('');}}/>{query&&<div className="search-results">{allPages.filter(name=>title(name).toLowerCase().includes(query.toLowerCase())).map(name=><Button key={name} onClick={()=>navigate(name)}><Icon name={name}/>{title(name)}<Icon name="arrow"/></Button>)}{!allPages.some(name=>title(name).toLowerCase().includes(query.toLowerCase()))&&<p>{x.noMatches}</p>}</div>}</div><select className="language-select" aria-label={t.language} value={language} onChange={e=>setLanguage(e.target.value as Language)}>{languages.map(code=><option key={code} value={code}>{{en:'EN',ta:'தமிழ்',hi:'हिन्दी'}[code]}</option>)}</select><Button className="icon-button motion-toggle" aria-label={paused?x.resume:x.pause} aria-pressed={paused} onClick={()=>setPaused(!paused)}><Icon name={paused?'play':'pause'}/></Button><Button className="icon-button" aria-label={t.theme} onClick={()=>setDark(!dark)}><Icon name={dark?'sun':'moon'}/></Button><span className="header-avatar">{identity?.user.name[0]||'G'}</span></div></header>
   <main id="main" tabIndex={-1}>
+   {!online&&<div className="partial-notice" role="status">You’re offline. The public shell and design preview remain available. Workspace data and actions require a connection.</div>}
    {preview&&<div className="preview-banner"><span><Icon name="spark"/><strong>{x.previewLabel}</strong> {x.previewBody}</span><Button onClick={()=>{setPreview(false);navigate('home');}}>{x.exitPreview}<Icon name="arrow"/></Button></div>}
    {identity&&<div className="workspace-toolbar"><label>{t.workspace}<select value={workspace} onChange={e=>setWorkspace(e.target.value)}>{identity.workspaces.map(row=><option key={row.id} value={row.id}>{row.name}</option>)}</select></label><span className="toolbar-spacer"/><Button className="quiet-button" disabled={loading} onClick={()=>setRefresh(refresh+1)}><Icon name="refresh"/>{t.refresh}</Button><Button className="quiet-button" disabled={loading} onClick={endSession}><Icon name="exit"/>{t.signout}</Button></div>}
    {error&&<div role="alert" className="error"><Icon name="operations"/><span>{t.error}</span><Button onClick={()=>setRefresh(refresh+1)}>{t.retry}</Button></div>}
    {missing.length>0&&!error&&<div className="partial-notice" role="status">Some sections are unavailable: {missing.join(', ')}. <Button onClick={()=>setRefresh(refresh+1)}>{t.retry}</Button></div>}
    <AnimatePresence mode="wait" initial={false}><motion.div key={`${page}-${identity?'member':preview?'preview':'guest'}`} initial={{opacity:1}} animate={{opacity:1}} exit={{opacity:0}} transition={{duration:motionTokens.duration.fast}} className="page-content">
     {page==='roadmap'?roadmap():!identity&&!preview?<section className="welcome-layout"><div className="welcome-art"><span className="eyebrow">MAKE YOUR NEXT MOVE</span><h1>{x.welcome}</h1><p>{x.welcomeBody}</p><Mascot onClick={()=>setGuide(true)} label={x.meet}/><div className="welcome-caption"><Icon name="operations"/><span>YOUR IDEAS. YOUR APPROVAL. YOUR GROWTH.</span></div></div><div className="welcome-form-wrap"><form className="auth surface" onSubmit={open}><span className="auth-icon"><Icon name="lock"/></span><span className="eyebrow">A SPACE FOR YOUR BUSINESS</span><h2>{t.connect}</h2><p>{t.disconnected}</p><label htmlFor="session">{t.token}</label><div className="token-input"><Icon name="lock"/><input id="session" type="password" autoComplete="off" placeholder="••••••••••••••••••••" value={input} onChange={e=>setInput(e.target.value)} required maxLength={128}/></div><Button className="primary full" disabled={loading}>{loading?t.loading:t.connect}<Icon name="arrow"/></Button><div className="form-divider"><span>OR TAKE A LOOK AROUND</span></div><Button type="button" className="secondary full" onClick={()=>{setError(false);setPreview(true);navigate('home');}}>{x.preview}<Icon name="diagonal"/></Button><details className="session-help"><summary>{x.sessionHelp}</summary><p>{x.sessionHelpBody}</p><a href="https://github.com/Raghav08032007/social-growth-agent/blob/main/docs/foundation-setup.md" target="_blank" rel="noreferrer">{x.viewSetup}<Icon name="diagonal"/></a></details></form><p className="form-footnote"><Icon name="operations"/> {t.notice}</p></div></section>:<>
-     {loading?<div className="loading-state" role="status"><span className="loading-mark">✳</span>{t.loading}<div className="skeleton-grid"><div/><div/><div/></div></div>:page==='home'?home():page==='operations'?admin?<section className="operations-page"><div className="section-heading"><div><span className="eyebrow">WORKSPACE HEALTH</span><h1>{t.operations}</h1><p>{t.staff}</p></div><span className="tag"><Icon name="lock"/>STAFF</span></div><div className="stats">{admin.workspaces.map(row=><article className="metric" key={row.workspace_id}><span>{row.name}</span><strong>{rupees(row.ai_cost_paise)}</strong><small>{t.cost}</small><p className={row.alert?'cost-alert':'cost-healthy'}><Icon name={row.alert?'operations':'check'}/>{row.alert?t.alert:t.healthy}</p></article>)}</div><section className="surface"><h2>{t.jobs}</h2>{admin.failed_jobs.length?admin.failed_jobs.map(row=><p className="job-row" key={row.id}><Icon name="folder"/>{row.id.slice(0,8)} · {row.last_error}</p>):<p>{t.noData}</p>}</section></section>:<div className="surface empty-state"><Icon name="lock"/><h2>{t.staff}</h2><Button onClick={()=>navigate('home')}>{x.returnHome}</Button></div>:planned()}
+     {loading?<div className="loading-state" role="status"><span className="loading-mark">✳</span>{t.loading}<div className="skeleton-grid"><div/><div/><div/></div></div>:page==='home'?home():page==='operations'?admin?<section className="operations-page"><div className="section-heading"><div><span className="eyebrow">WORKSPACE HEALTH</span><h1>{t.operations}</h1><p>{t.staff}</p></div><span className="tag"><Icon name="lock"/>STAFF</span></div><div className="stats">{admin.workspaces.map(row=><article className="metric" key={row.workspace_id}><span>{row.name}</span><strong>{rupees(row.ai_cost_paise)}</strong><small>{t.cost}</small><p className={row.alert?'cost-alert':'cost-healthy'}><Icon name={row.alert?'operations':'check'}/>{row.alert?t.alert:t.healthy}</p></article>)}</div><section className="surface"><h2>{t.jobs}</h2>{admin.failed_jobs.length?admin.failed_jobs.map(row=><p className="job-row" key={row.id}><Icon name="folder"/>{row.id.slice(0,8)} · {row.last_error}</p>):<p>{t.noData}</p>}</section><OperationsRecords api={api}/></section>:<div className="surface empty-state"><Icon name="lock"/><h2>{t.staff}</h2><Button onClick={()=>navigate('home')}>{x.returnHome}</Button></div>:planned()}
     </>}
    </motion.div></AnimatePresence>
    <footer><span>social growth <b>✳</b> <span>SMALL STEPS. BIGGER POSSIBILITIES.</span></span><Button className="text-button" onClick={()=>setGuide(true)}>{x.meet}<Icon name="diagonal"/></Button></footer>

@@ -1,7 +1,10 @@
+import os
+
 from celery import Celery
 from redis import Redis
 from sqlalchemy import or_, select
 
+from .alerts import SMTPNotifier, collect, deliver
 from .config import Settings
 from .db import make_engine, transaction
 from .jobs import execute
@@ -24,7 +27,10 @@ celery.conf.update(
     task_time_limit=55,
     broker_transport_options={"visibility_timeout": 90},
     broker_connection_retry_on_startup=True,
-    beat_schedule={"dispatch-durable-outbox": {"task": "growth.dispatch", "schedule": 2.0}},
+    beat_schedule={
+        "dispatch-durable-outbox": {"task": "growth.dispatch", "schedule": 2.0},
+        "cost-monitor": {"task": "growth.monitor_costs", "schedule": 15.0},
+    },
 )
 
 
@@ -56,3 +62,22 @@ def dispatch():
         )
         for row in rows:
             run_job.delay(row.workspace_id, row.id)
+
+
+@celery.task(name="growth.monitor_costs")
+def monitor_costs():
+    collect(engine)
+    host, recipient = os.environ.get("ALERT_SMTP_HOST"), os.environ.get("ALERT_TO")
+    if host and recipient:
+        deliver(
+            engine,
+            SMTPNotifier(
+                host,
+                int(os.environ.get("ALERT_SMTP_PORT", "1025")),
+                os.environ.get("ALERT_FROM", "operations@social-growth.local"),
+                recipient,
+                tls=os.environ.get("ALERT_SMTP_TLS") == "1",
+                username=os.environ.get("ALERT_SMTP_USER", ""),
+                password=os.environ.get("ALERT_SMTP_PASSWORD", ""),
+            ),
+        )

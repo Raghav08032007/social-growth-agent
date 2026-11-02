@@ -6,5 +6,7 @@
   "production_complete": [],
   "in_progress": ["PL-3", "PL-5", "PL-7", "PL-8"],
   "not_started_count": 253,
-  "evidence": "docs/reports/phase-0.md"
+  "evidence": "docs/reports/phase-0-completion-pass.md",
+  "local_checks": {"api_tests":20,"unit_coverage_percent":88,"offline_shell":"passed","database_restore":"passed","worker_restart":"passed","local_alert_delivery":"passed","storage_emulator":"passed"},
+  "remaining_external_gates": ["native_language_review","provider_scope_and_token_lifecycle_verification","managed_deployment_key_and_storage_validation"]
 }

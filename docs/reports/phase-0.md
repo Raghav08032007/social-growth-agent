@@ -2,6 +2,8 @@
 
 Updated 2 November 2026. **Status: in progress; no whole feature or phase declared production complete.**
 
+**Latest:** the [completion-pass report](phase-0-completion-pass.md) supersedes the older gaps below for error monitoring, pagination, local mail/storage, metering contracts, OpenAPI, offline shell and recovery/load tests. Live-provider and human-review gates remain explicit there.
+
 The interface has since received the [dimensional workspace redesign](../design/redesign-report.md), including an original 3D character, motion controls, preview and broader interaction tests. This improves PL-3 but does not close its remaining release gates.
 
 ## Implemented and verified

@@ -63,6 +63,24 @@ Add a new key ID to `VAULT_KEYS` while retaining the old key; set `VAULT_ACTIVE_
 
 ## API boundaries
 
+The completion pass adds `/openapi.json` and staff cursor endpoints under `/v1/admin/{users,workspaces,failed-jobs,api-errors,cost-alerts}`. The Operations record browser supports Load more. Cost alerts are deduplicated by tenant/month and delivered by the worker to the development Mailpit catcher at http://127.0.0.1:8025. No external email recipient is configured by Compose.
+
+Moto supplies an internal-only S3-compatible test server. Its state is ephemeral; it must not hold customer files. `S3_ENDPOINT`, `S3_ACCESS_KEY` and `S3_SECRET_KEY` configure the adapter; init_local.py adds missing emulator credentials while keeping existing vault/database keys. No object-storage ports are published.
+
+Additional local checks:
+
+```powershell
+docker compose exec -T api python check_storage.py
+python scripts/check_restore.py
+python scripts/check_worker_restart.py
+docker compose exec -T api python check_load.py
+python scripts/exit_phase0.py
+```
+
+Restore creates and removes only a new `growth_restore_<UUID>` schema; the dump stays in memory. Worker recovery temporarily pauses this development stack's worker and brings it back. Run these on the development stack, not a shared production environment. Diagnostics retain labelled fixture records for audit. The consolidated runner logs checks under ignored artifacts and explicitly records live-provider/human-review gates as unverified.
+
+The public app shell is now cached for offline reload and design preview. Authenticated API data, health responses, authorization-bearing requests and writes are excluded. Reloading still clears the in-memory session. Native-language review and full device/accessibility review remain separate release requirements.
+
 An operator can configure monitoring with `flask --app growth configure-cost-policy --workspace-id ID --plan-price-paise 149900 --alert-percent 30`. This changes cost-alert assumptions only; it does not alter subscription billing or entitlements.
 
 Bearer sessions authenticate users. `X-Workspace-ID` selects a workspace only after membership validation; it never authenticates. Collection reads are tenant scoped, return at most 100 rows, and support `limit`/`after` cursors. `/summary` provides uncapped counts and UTC-calendar-month AI cost. Only explicit staff users can access global operational summaries; global admin lists currently cap at 100 records and require pagination before large deployment.

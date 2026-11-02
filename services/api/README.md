@@ -6,6 +6,8 @@ See [setup](../../docs/foundation-setup.md) and [phase plan](../../docs/plans/ph
 
 Routes:
 
+The full machine-readable contract is `/openapi.json` (also checked against Flask's routes). Staff record collections now paginate with `limit` and `after`; the overview is a summary, not a substitute for cursor traversal. Error records omit request values and exception text. Alert delivery is at least once, with stable Message-ID and bounded retry; development mail stays in Mailpit.
+
 | Route | Access | Result |
 |---|---|---|
 | GET /health/live | public | liveness |
