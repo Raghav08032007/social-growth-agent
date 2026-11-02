@@ -10,6 +10,8 @@ Public repository: [Raghav08032007/social-growth-agent](https://github.com/Ragha
 
 ![Phase 0 foundation preview](docs/images/foundation-desktop.png)
 
+The new interface includes Pip, an original 3D character, motion controls, a token-free design preview and a live build roadmap. [What remains and what the owner needs to do](docs/owner-checklist.md) · [Design verification](docs/design/redesign-report.md).
+
 ## Run the demo
 
 Requires Python 3.11+; no third-party packages or provider credentials.

@@ -55,7 +55,7 @@ cd ../../frontend
 npm run build
 ```
 
-The optional `scripts/run_foundation_browser.py` uses caller-provided playwright-core/Chrome and intercepted transport to actual Flask handlers over temporary SQLite. Set `PLAYWRIGHT_MODULE` and `CHROME_PATH`; run with the API virtual environment. It checks invalid credentials, staff alert, languages, theme, mobile reflow and session revocation. It does not certify direct browser HTTP or MySQL integration.
+The optional `scripts/run_foundation_browser.py` uses project-local Playwright and intercepted transport to actual Flask handlers over temporary SQLite. Run `npx playwright install chromium` from `frontend`, then run the script with the API virtual environment. Alternatively set `CHROME_PATH` to an installed Chrome executable; `PLAYWRIGHT_MODULE` can override the library path. It checks credentials, staff alert/denial, languages, theme, preview isolation, motion/reduced-motion, content states, mobile/tablet reflow and session revocation. It does not certify direct browser HTTP or MySQL integration.
 
 ## Vault rotation
 

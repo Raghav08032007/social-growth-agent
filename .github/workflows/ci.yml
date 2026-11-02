@@ -35,6 +35,9 @@ jobs:
         working-directory: frontend
       - run: npm run build
         working-directory: frontend
+      - run: npx playwright install --with-deps chromium
+        working-directory: frontend
+      - run: python scripts/run_foundation_browser.py
   infrastructure:
     runs-on: ubuntu-latest
     timeout-minutes: 15

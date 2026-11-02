@@ -30,6 +30,10 @@ with tempfile.TemporaryDirectory() as directory:
         db.add_all([user,workspace]);db.flush()
         db.add(Membership(user_id=user.id,workspace_id=workspace.id,role='owner'))
         os.environ['FOUNDATION_SESSION']=issue_session(db,user.id)
+        member=User(name='Fixture member',is_staff=False)
+        db.add(member);db.flush()
+        db.add(Membership(user_id=member.id,workspace_id=workspace.id,role='viewer'))
+        os.environ['FOUNDATION_MEMBER_SESSION']=issue_session(db,member.id)
         record_cost(db,workspace.id,'browser-fixture',50000)
         db.add(Job(workspace_id=workspace.id,idempotency_key='browser-fixture',
                    kind='diagnostic.retry',payload={'fail_until':0},status='succeeded'))
