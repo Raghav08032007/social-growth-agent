@@ -16,3 +16,34 @@ jobs:
       - run: python -m unittest discover -s backend -p 'test_*.py' -v
       - run: python scripts/validate_catalogue.py
       - run: node --check web/app.js
+  foundation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: pip install -r services/api/requirements-lock.txt
+      - run: python -m pytest -q --cov=growth --cov-fail-under=85
+        working-directory: services/api
+      - run: ruff check growth tests
+        working-directory: services/api
+      - run: npm ci
+        working-directory: frontend
+      - run: npm run build
+        working-directory: frontend
+  infrastructure:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - run: python scripts/init_local.py
+      - run: docker compose up --build -d --wait
+      - run: docker compose exec -T api python check_stack.py
+      - if: failure()
+        run: docker compose logs --tail 100
+      - if: always()
+        run: docker compose down

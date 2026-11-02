@@ -1,0 +1,7 @@
+Flask>=3.1,<4
+SQLAlchemy>=2.0,<2.2
+alembic>=1.16,<2
+cryptography>=45,<51
+celery[redis]>=5.5,<6
+PyMySQL[rsa]>=1.1,<2
+waitress>=3,<4

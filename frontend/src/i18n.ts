@@ -1,0 +1,47 @@
+export const languages = ['en', 'ta', 'hi'] as const;
+export type Language = typeof languages[number];
+const en = {
+  home: 'Home', calendar: 'Calendar', create: 'Create', inbox: 'Inbox', leads: 'Leads',
+  insights: 'Insights', store: 'Store', settings: 'Settings', operations: 'Operations',
+  title: 'Your business. Your next chapter.', subtitle: 'Production foundation · Phase 0',
+  connect: 'Open workspace', token: 'Operator-issued session token', signout: 'End session',
+  disconnected: 'Enter a session issued by the local provisioning command. Public sign-in comes in Phase 1.',
+  empty: 'This module is planned. The current release builds secure workspace infrastructure.',
+  loading: 'Loading…', workspace: 'Workspace', theme: 'Change theme', language: 'Language',
+  jobs: 'Jobs', connections: 'Connections', usage: 'Recorded AI cost', audit: 'Audit events',
+  planned: 'Planned', error: 'Request failed. Check your session and API connection.',
+  retry: 'Retry', refresh: 'Refresh', noData: 'No records yet.', staff: 'Staff-only cost and failure overview',
+  cost: 'AI cost this month', alert: 'Cost threshold exceeded', healthy: 'Within cost threshold',
+  notice: 'Live social integrations and billing are not connected in this release.',
+};
+export const messages: Record<Language, typeof en> = {
+  en,
+  ta: {
+    home: 'முகப்பு', calendar: 'நாட்காட்டி', create: 'உருவாக்கு', inbox: 'செய்திகள்', leads: 'வாடிக்கையாளர்கள்',
+    insights: 'புள்ளிவிவரங்கள்', store: 'கடை', settings: 'அமைப்புகள்', operations: 'நிர்வாகம்',
+    title: 'உங்கள் வணிகம். உங்கள் அடுத்த அத்தியாயம்.', subtitle: 'அடித்தளம் · கட்டம் 0',
+    connect: 'பணியிடத்தைத் திற', token: 'நிர்வாகி வழங்கிய அமர்வு டோக்கன்', signout: 'அமர்வை முடி',
+    disconnected: 'உள்ளூர் கட்டளை வழங்கிய டோக்கனை உள்ளிடவும். பொது உள்நுழைவு கட்டம் 1 இல் வரும்.',
+    empty: 'இந்தப் பகுதி திட்டமிடப்பட்டுள்ளது. தற்போது பாதுகாப்பான பணியிட அடித்தளம் உருவாக்கப்படுகிறது.',
+    loading: 'ஏற்றுகிறது…', workspace: 'பணியிடம்', theme: 'நிற அமைப்பை மாற்று', language: 'மொழி',
+    jobs: 'பணிகள்', connections: 'இணைப்புகள்', usage: 'பதிவான AI செலவு', audit: 'செயல் பதிவுகள்',
+    planned: 'திட்டமிடப்பட்டது', error: 'கோரிக்கை தோல்வி. அமர்வையும் API இணைப்பையும் சரிபார்க்கவும்.',
+    retry: 'மீண்டும் முயற்சி', refresh: 'புதுப்பி', noData: 'இன்னும் பதிவுகள் இல்லை.', staff: 'நிர்வாகிகளுக்கான செலவு மற்றும் தோல்வி விவரங்கள்',
+    cost: 'இந்த மாத AI செலவு', alert: 'செலவு வரம்பு மீறப்பட்டது', healthy: 'செலவு வரம்பிற்குள்',
+    notice: 'இந்த வெளியீட்டில் நேரடி சமூக இணைப்புகளும் கட்டண வசதியும் இணைக்கப்படவில்லை.',
+  },
+  hi: {
+    home: 'होम', calendar: 'कैलेंडर', create: 'बनाएँ', inbox: 'इनबॉक्स', leads: 'लीड',
+    insights: 'विश्लेषण', store: 'स्टोर', settings: 'सेटिंग', operations: 'संचालन',
+    title: 'आपका व्यवसाय। आपका अगला अध्याय।', subtitle: 'आधार · चरण 0',
+    connect: 'कार्यस्थान खोलें', token: 'संचालक द्वारा दिया गया सत्र टोकन', signout: 'सत्र समाप्त करें',
+    disconnected: 'स्थानीय कमांड से जारी टोकन दर्ज करें। सार्वजनिक साइन-इन चरण 1 में आएगा।',
+    empty: 'यह मॉड्यूल योजनाबद्ध है। अभी सुरक्षित कार्यस्थान का आधार बनाया जा रहा है।',
+    loading: 'लोड हो रहा है…', workspace: 'कार्यस्थान', theme: 'थीम बदलें', language: 'भाषा',
+    jobs: 'कार्य', connections: 'कनेक्शन', usage: 'दर्ज AI खर्च', audit: 'गतिविधि रिकॉर्ड',
+    planned: 'योजनाबद्ध', error: 'अनुरोध विफल। अपना सत्र और API कनेक्शन जाँचें।',
+    retry: 'फिर प्रयास करें', refresh: 'ताज़ा करें', noData: 'अभी कोई रिकॉर्ड नहीं।', staff: 'केवल कर्मचारियों के लिए खर्च और विफलताओं का विवरण',
+    cost: 'इस महीने AI खर्च', alert: 'खर्च की सीमा पार', healthy: 'खर्च सीमा के भीतर',
+    notice: 'इस रिलीज़ में लाइव सोशल कनेक्शन और बिलिंग जुड़े नहीं हैं।',
+  },
+};

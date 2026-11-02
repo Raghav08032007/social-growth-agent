@@ -1,5 +1,6 @@
 """Validate preserved source inventory; no network or dependencies."""
 import csv
+import json
 from collections import Counter
 from pathlib import Path
 
@@ -12,3 +13,13 @@ assert Counter(int(r['phase']) for r in rows) == expected, 'Phase count mismatch
 assert all(r['feature_name'].strip() and r['status'] == 'planned' for r in rows)
 assert sum(int(r['phase']) <= 4 for r in rows) == 82
 print('PASS: 257 unique planned features; 11 phase totals match; P0–P4 = 82.')
+progress_path = ROOT / 'docs/progress.json'
+if progress_path.exists():
+    progress = json.loads(progress_path.read_text(encoding='utf-8'))
+    complete = set(progress['production_complete'])
+    started = set(progress['in_progress'])
+    known = {row['feature_id'] for row in rows}
+    assert not complete & started
+    assert (complete | started) <= known
+    assert len(known - complete - started) == progress['not_started_count']
+    print(f"Implementation: {len(complete)} complete, {len(started)} in progress, {progress['not_started_count']} not started.")

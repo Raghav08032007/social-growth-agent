@@ -1,0 +1,74 @@
+name: social-growth
+x-api: &api
+  build: ./services/api
+  environment: &environment
+    APP_ENV: development
+    DATABASE_URL: mysql+pymysql://growth:${MYSQL_PASSWORD:?Run scripts/init_local.py}@mysql:3306/growth
+    REDIS_URL: redis://redis:6379/0
+    VAULT_KEYS: ${VAULT_KEYS:?Run scripts/init_local.py}
+    VAULT_ACTIVE_KEY: local-v1
+  restart: unless-stopped
+services:
+  mysql:
+    image: mysql:8.4
+    environment:
+      MYSQL_DATABASE: growth
+      MYSQL_USER: growth
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:?Run scripts/init_local.py}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?Run scripts/init_local.py}
+    volumes: [mysql-data:/var/lib/mysql]
+    healthcheck:
+      test: [CMD-SHELL, 'MYSQL_PWD="$$MYSQL_PASSWORD" mysql -h 127.0.0.1 -ugrowth -D growth -e "SELECT 1"']
+      interval: 5s
+      timeout: 4s
+      retries: 30
+    restart: unless-stopped
+  redis:
+    image: redis:7.4-alpine
+    command: [redis-server, --appendonly, 'yes']
+    volumes: [redis-data:/data]
+    healthcheck:
+      test: [CMD, redis-cli, ping]
+      interval: 5s
+      timeout: 3s
+      retries: 15
+    restart: unless-stopped
+  migrate:
+    <<: *api
+    environment:
+      <<: *environment
+      DATABASE_URL: mysql+pymysql://root:${MYSQL_ROOT_PASSWORD:?Run scripts/init_local.py}@mysql:3306/growth
+    command: [alembic, upgrade, head]
+    depends_on:
+      mysql: {condition: service_healthy}
+    restart: 'no'
+  api:
+    <<: *api
+    ports: ['127.0.0.1:5000:5000']
+    depends_on:
+      migrate: {condition: service_completed_successfully}
+      redis: {condition: service_healthy}
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://127.0.0.1:5000/health/ready',timeout=3)"]
+      interval: 5s
+      timeout: 4s
+      retries: 20
+  worker:
+    <<: *api
+    command: [celery, -A, growth.worker:celery, worker, --loglevel=WARNING, --concurrency=2]
+    depends_on:
+      api: {condition: service_healthy}
+  scheduler:
+    <<: *api
+    command: [celery, -A, growth.worker:celery, beat, --loglevel=WARNING, --schedule=/tmp/celerybeat-schedule]
+    depends_on:
+      api: {condition: service_healthy}
+  frontend:
+    build: ./frontend
+    ports: ['127.0.0.1:8080:80']
+    depends_on:
+      api: {condition: service_healthy}
+    restart: unless-stopped
+volumes:
+  mysql-data:
+  redis-data:

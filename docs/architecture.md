@@ -1,6 +1,6 @@
 # Production architecture specification
 
-This is a proposed target. The current demo uses stdlib HTTP + SQLite and does not implement this architecture.
+This is the production target. The original demo uses stdlib HTTP + SQLite. Phase 0 now implements part of this architecture in `services/api/` and `frontend/`; see [current implementation evidence](reports/phase-0.md). The diagram describes the full target, including integrations that remain unimplemented.
 
 ```mermaid
 flowchart LR

@@ -1,5 +1,7 @@
 # Delivery report — 2 November 2026
 
+**Newer implementation update:** Phase 0 is now underway in `services/api/` and `frontend/`. Read the [current Phase 0 report](reports/phase-0.md) and [setup guide](foundation-setup.md). The sections below describe the earlier planning/demo delivery and are retained as its historical baseline; their unimplemented list is superseded by the phase report.
+
 ## Delivered
 
 - Revised blueprint, 11-phase roadmap and smaller pilot recommendation.

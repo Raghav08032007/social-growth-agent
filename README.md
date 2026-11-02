@@ -6,6 +6,10 @@ Public repository: [Raghav08032007/social-growth-agent](https://github.com/Ragha
 
 **Delivery status:** planning package + local demo. This is not a production SaaS or a complete replica of Whop, Buffer, Hootsuite, Sprout Social, or Agorapulse. All 257 catalogue features remain planned. The demo implements a subset of their underlying workflow using simulated publishing and manually recorded sales.
 
+**Implementation is underway:** the Phase 0 Flask/MySQL/Redis/Celery foundation and React shell now live in `services/api/` and `frontend/`. See [foundation setup](docs/foundation-setup.md) and the [phase report](docs/reports/phase-0.md). The original catalogue preserves source-plan status; the phase report tracks current implementation and evidence.
+
+![Phase 0 foundation preview](docs/images/foundation-desktop.png)
+
 ## Run the demo
 
 Requires Python 3.11+; no third-party packages or provider credentials.
